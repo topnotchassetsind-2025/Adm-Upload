@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Model Preview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+html, body {
+  margin: 0;
+  height: 100%;
+  background: radial-gradient(circle at top, #0a1530, #020617);
+  font-family: Inter, system-ui, sans-serif;
+  color: #fff;
+}
+
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MODEL VIEW */
+.viewer-section {
+  flex: 1;
+  background: #000;
+}
+
+model-viewer {
+  width: 100%;
+  height: 100%;
+}
+
+/* INFO BAR */
+.info-bar {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  background: linear-gradient(180deg, #020617, #020617dd);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.info-left h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.info-left p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+/* DOWNLOAD BUTTON */
+#downloadBtn {
+  padding: 14px 36px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  background: linear-gradient(90deg,#00eaff,#6f7bff);
+  color: #000;
+  box-shadow: 0 0 25px rgba(0,234,255,.6);
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <!-- MODEL VIEW -->
+  <div class="viewer-section">
+    <model-viewer
+      id="viewer"
+      src=""
+      camera-controls
+      auto-rotate
+      auto-rotate-delay="1000"
+      shadow-intensity="1"
+      exposure="1"
+      camera-orbit="0deg 75deg 2.8m"
+      min-camera-orbit="auto auto 1.6m"
+      max-camera-orbit="auto auto 6m"
+      field-of-view="30deg"
+      interaction-prompt="none">
+    </model-viewer>
+  </div>
+
+  <!-- INFO BAR -->
+  <div class="info-bar">
+    <div class="info-left">
+      <h2 id="modelName"></h2>
+      <p id="modelMeta"></p>
+    </div>
+
+    <button id="downloadBtn">Download</button>
+  </div>
+
+</div>
+
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBw-GkA1uZIr0b8IzTrdADHZjUKCj2SpS4",
+  authDomain: "topnotch-assets.firebaseapp.com",
+  projectId: "topnotch-assets"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const id = new URLSearchParams(location.search).get("id");
+const ref = doc(db, "models", id);
+const snap = await getDoc(ref);
+
+if (!snap.exists()) {
+  alert("Model not found");
+  throw new Error("Model not found");
+}
+
+const d = snap.data();
+
+document.getElementById("viewer").src = d.modelUrl;
+document.getElementById("modelName").innerText = d.name;
+document.getElementById("modelMeta").innerText = `${d.game} · ${d.category}`;
+
+document.getElementById("downloadBtn").onclick = async () => {
+  window.open(d.downloadlink, "_blank");
+  await updateDoc(ref, { downloads: increment(1) });
+};
+</script>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</body>
+</html>

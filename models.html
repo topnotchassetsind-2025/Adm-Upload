@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Models</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#0a1530,#020617);
+  color:#fff;
+  font-family:Inter,system-ui;
+}
+.models-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:24px;
+  padding:40px;
+}
+.model-card{
+  background:#0b1224;
+  border-radius:18px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.25s;
+}
+.model-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 0 35px rgba(0,234,255,.35);
+}
+.model-card img{
+  width:100%;
+  height:300px;
+  object-fit:contain;
+  background:#000;
+}
+.model-info{
+  padding:14px;
+}
+.model-title{
+  font-weight:600;
+}
+.model-meta{
+  font-size:13px;
+  color:#9ca3af;
+}
+</style>
+</head>
+
+<body>
+
+<h2 style="padding:30px">Models</h2>
+<div class="models-grid" id="grid"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBw-GkA1uZIr0b8IzTrdADHZjUKCj2SpS4",
+  authDomain: "topnotch-assets.firebaseapp.com",
+  projectId: "topnotch-assets"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const params = new URLSearchParams(location.search);
+const search = params.get("search")?.toLowerCase();
+const grid = document.getElementById("grid");
+
+async function load(){
+  let q;
+
+  if(search){
+    q = query(
+      collection(db,"models"),
+      where("name_lower",">=",search),
+      where("name_lower","<=",search+"\uf8ff")
+    );
+  } else {
+    q = collection(db,"models");
+  }
+
+  const snap = await getDocs(q);
+  snap.forEach(doc=>{
+    const d = doc.data();
+    grid.innerHTML += `
+      <div class="model-card" onclick="location.href='model.html?id=${doc.id}'">
+        <img src="${d.thumbnail}">
+        <div class="model-info">
+          <div class="model-title">${d.name}</div>
+          <div class="model-meta">${d.game} · ${d.category}</div>
+        </div>
+      </div>`;
+  });
+}
+load();
+</script>
+</body>
+</html>

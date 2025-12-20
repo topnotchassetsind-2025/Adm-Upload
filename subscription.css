@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0f1c3f, #02040f);
+  color: #fff;
+}
+
+.pricing {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.pricing h1 {
+  font-size: 42px;
+  background: linear-gradient(90deg,#00eaff,#6f7bff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.pricing p {
+  margin-top: 10px;
+  color: #aaa;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  max-width: 1100px;
+  margin: 60px auto 0;
+}
+
+/* PLAN CARD */
+.plan {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(25px);
+  border-radius: 24px;
+  padding: 40px 30px;
+  position: relative;
+  transition: 0.3s;
+}
+
+.plan:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 0 40px rgba(0,234,255,0.25);
+}
+
+.plan h3 {
+  font-size: 22px;
+}
+
+.price {
+  font-size: 34px;
+  margin: 15px 0;
+  display: block;
+}
+
+.price span {
+  font-size: 16px;
+  color: #aaa;
+}
+
+.save {
+  color: #8fefff;
+  margin-bottom: 25px;
+}
+
+/* FEATURES */
+.plan ul {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+.plan ul li {
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+/* BUTTON */
+.plan button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg,#00eaff,#6f7bff);
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 25px #00eaff;
+  transition: 0.3s;
+}
+
+.plan button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px #00eaff;
+}
+
+/* FEATURED */
+.featured {
+  border: 2px solid #00eaff;
+}
+
+.badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00eaff;
+  color: #000;
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.gold {
+  background: gold;
+}
+
+/* ELITE */
+.elite {
+  box-shadow: 0 0 40px gold;
+}

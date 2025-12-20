@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TopNotch Assets</title>
+<link rel="icon" href="assets/logo.ico">
+<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>  
+
+<header class="navbar">
+  
+  <div class="logo">TopNotch<span>Assets</span></div>
+
+ <nav class="nav-right">
+
+  <!-- SEARCH BAR -->
+  <input
+  type="text"
+  id="searchInput"
+  placeholder="Search models..."
+  onkeypress="if(event.key==='Enter') searchModels()"
+  />
+
+
+
+    <span class="search-icon">🔍</span>
+  </div>
+
+  <a href="#">Popular</a>
+
+  <div class="dropdown">
+    <a href="#" class="drop-btn">Categories</a>
+
+    <div class="mega-menu">
+      <div class="menu-left">
+        <span class="active">Popular</span>
+        <span>Staff Picks</span>
+        <span>Downloadable</span>
+        <span>Collections</span>
+        <span>Human Created</span>
+        <span>AI Generated</span>
+      </div>
+
+      <div class="menu-right">
+        <div>
+          <p>3D Models</p>
+          <a>Characters</a>
+          <a>Vehicles</a>
+          <a>Weapons</a>
+          <a>Architecture</a>
+          <a>Sci-Fi</a>
+        </div>
+
+        <div>
+          <p>Scenes</p>
+          <a>Nature</a>
+          <a>Abstract</a>
+          <a>Fantasy</a>
+          <a>Industrial</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="index.html?to=subscription.html">Subscriptions</a>
+
+
+  <a href="index.html?to=login/index.html">Login</a>
+
+
+</nav>
+
+</header>
+
+<section class="hero-slider boxed">
+
+  <div class="slides">
+
+    <!-- SLIDE 1 -->
+    <div class="slide active">
+      <img src="assets/16.jpeg" alt="Featured Model">
+
+      <div class="slide-overlay"></div>
+
+      <div class="slide-content">
+        <h2>Cinematic Cyberpunk Vehicle</h2>
+        <p>
+          AAA-quality asset optimized for games, movies & metaverse.
+        </p>
+        <button class="hero-btn">Explore Model</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide">
+      <img src="assets/18.jpeg" alt="Game Ready Characters">
+
+      <div class="slide-overlay"></div>
+
+      <div class="slide-content">
+        <h2>Game-Ready Characters</h2>
+        <p>Rigged & optimized for Unreal & Unity.</p>
+        <button class="hero-btn">View Collection</button>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide">
+      <img src="assets/19.jpeg" alt="Trending Models">
+
+      <div class="slide-overlay"></div>
+
+      <div class="slide-content">
+        <h2>Trending This Week</h2>
+        <p>Top downloaded assets chosen by creators.</p>
+        <button class="hero-btn">See Trending</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DOTS -->
+  <div class="slider-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h4>Enterprise</h4>
+      <a href="#">Enterprise Solutions</a>
+      <a href="#">3D Configurators</a>
+      <a href="#">3D eCommerce</a>
+      <a href="#">3D Viewer</a>
+      <a href="#">3D Advertising</a>
+      <a href="#">TopNotch for Teams</a>
+      <a href="#">Customer Stories</a>
+      <a href="#">Pricing</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Ecosystem</h4>
+      <a href="#">Exporters</a>
+      <a href="#">Importers</a>
+      <a href="#">Developers & API</a>
+      <a href="#">Augmented Reality</a>
+      <a href="#">Virtual Reality</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Store</h4>
+      <a href="#">Buy 3D Models</a>
+      <a href="#">Become a Seller</a>
+      <a href="#">Free 3D Models</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Community</h4>
+      <a href="#">Explore</a>
+      <a href="#">Help Center</a>
+      <a href="#">Education</a>
+      <a href="#">Museums</a>
+      <a href="#">Blog</a>
+      <a href="#">TopNotch Masters</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#">Company</a>
+      <a href="#">Careers</a>
+      <a href="#">Press Kit</a>
+      <a href="#">Features</a>
+
+      <button class="contact-btn">Contact Us</button>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 TopNotch Assets. All rights reserved.</span>
+
+    <div class="socials">
+      <a href="#">🐦</a>
+      <a href="#">📸</a>
+      <a href="#">💼</a>
+      <a href="#">🎮</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="js/main.js"></script>
+
+
+<script>
+function searchModels() {
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+  if (q) {
+    window.location.href = `models.html?search=${encodeURIComponent(q)}`;
+  }
+}
+</script>
+
+
+
+</body>
+
+</html>
